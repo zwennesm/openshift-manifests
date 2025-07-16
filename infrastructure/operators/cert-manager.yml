@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: netobserv-operator
+  name: cert-manager
   namespace: openshift-gitops
 spec:
   syncPolicy:
@@ -10,17 +10,14 @@ spec:
       selfHeal: true
   project: default
   source:
-    chart: netobserv-operator
-    repoURL: https://netobserv.io/static/helm/
+    chart: cert-manager
+    repoURL: https://charts.jetstack.io
     targetRevision: 1.9.1
     helm:
-      releaseName: netobserv-operator
+      releaseName: cert-manager
       valuesObject:
-        standaloneConsole:
-          enable: true
-        install:
-          loki: true
-          prom: true
+        crds:
+          enabled: true
   destination:
     server: "https://kubernetes.default.svc"
-    namespace: netobserv
+    namespace: cert-manager
