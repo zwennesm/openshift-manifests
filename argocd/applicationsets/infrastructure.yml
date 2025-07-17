@@ -6,11 +6,6 @@ metadata:
 spec:
   goTemplate: true
   goTemplateOptions: ["missingkey=error"]
-  syncPolicy:
-    preserveResourcesOnDeletion: false
-    automated:
-      prune: true
-      selfHeal: true
   generators:
   - git:
       repoURL: https://github.com/zwennesm/openshift-manifests.git
