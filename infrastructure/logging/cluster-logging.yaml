@@ -3,6 +3,8 @@ kind: ClusterLogging
 metadata:
   name: instance
   namespace: openshift-logging
+  annotations:
+    argocd.argoproj.io/sync-wave: "2"
 spec:
   managementState: Managed
   logStore:

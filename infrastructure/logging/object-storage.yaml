@@ -3,6 +3,8 @@ kind: ObjectBucketClaim
 metadata:
   name: loki
   namespace: openshift-logging
+  annotations:
+    argocd.argoproj.io/sync-wave: "1"
 spec:
   generateBucketName: loki
   storageClassName: rook-ceph-bucket

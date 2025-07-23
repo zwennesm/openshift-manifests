@@ -11,8 +11,6 @@
 apiVersion: ceph.rook.io/v1
 kind: CephCluster
 metadata:
-  annotations:
-    argocd.argoproj.io/sync-wave: "2"
   name: rook-ceph
   namespace: rook-ceph # namespace:cluster
 spec:

@@ -2,6 +2,8 @@ kind: FlowCollector
 apiVersion: flows.netobserv.io/v1beta2
 metadata:
   name: cluster
+  annotations:
+    argocd.argoproj.io/sync-wave: "2"
 spec:
   agent:
     ebpf:
@@ -24,7 +26,7 @@ spec:
   kafka:
       enable: false
   loki:
-    enable: false
+    enable: true
     lokiStack:
       name: loki
     mode: Monolithic
