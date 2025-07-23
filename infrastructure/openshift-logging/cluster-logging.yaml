@@ -4,7 +4,7 @@ metadata:
   name: instance
   namespace: openshift-logging
   annotations:
-    argocd.argoproj.io/sync-wave: "2"
+    argocd.argoproj.io/hook: PostSync
 spec:
   managementState: Managed
   logStore:
