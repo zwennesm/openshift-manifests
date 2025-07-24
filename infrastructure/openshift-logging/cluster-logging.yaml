@@ -4,7 +4,7 @@ metadata:
   name: instance
   namespace: openshift-logging
   annotations:
-    argocd.argoproj.io/hook: PostSync
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
 spec:
   managementState: Managed
   logStore:
