@@ -1,0 +1,38 @@
+apiVersion: loki.grafana.com/v1
+kind: LokiStack
+metadata:
+  name: logging-loki
+  namespace: openshift-logging
+  annotations:
+    argocd.argoproj.io/sync-wave: "1"
+spec:
+  size: 1x.demo
+  limits:
+    global:
+      ingestion:
+        ingestionBurstSize: 16 
+        ingestionRate: 8
+      retention:
+        days: 15
+        streams:
+          - days: 60
+            priority: 1
+            selector: '{log_type="audit"}'
+          - days: 30
+            priority: 1
+            selector: '{log_type="infrastructure"}'
+          - days: 15
+            priority: 1
+            selector: '{log_type="application"}'
+  replication:
+    factor: 1
+  storage:
+    schemas:
+    - version: v12
+      effectiveDate: "2022-06-01"
+    secret:
+      name: logging-loki-s3
+      type: s3
+  storageClassName: rook-ceph-block
+  tenants:
+    mode: openshift-logging

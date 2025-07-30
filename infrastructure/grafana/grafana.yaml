@@ -1,0 +1,35 @@
+apiVersion: grafana.integreatly.org/v1beta1
+kind: Grafana
+metadata:
+  name: grafana
+  namespace: openshift-monitoring
+  labels:
+    dashboards: "grafana"
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+spec:
+  config:
+    log:
+      mode: "console"
+    auth:
+      disable_login_form: "false"
+  route:
+    spec: {}
+  deployment:
+    spec:
+      strategy:
+        type: Recreate
+      template:
+        spec:
+          volumes:
+          - name: grafana-data
+            persistentVolumeClaim:
+              claimName: grafana-pvc
+  persistentVolumeClaim:
+    spec:
+      accessModes:
+      - ReadWriteOnce
+      storageClassName: rook-ceph-block
+      resources:
+        requests:
+          storage: 5Gi

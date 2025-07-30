@@ -1,0 +1,10 @@
+apiVersion: objectbucket.io/v1alpha1
+kind: ObjectBucketClaim
+metadata:
+  name: logging-loki-s3
+  namespace: rook-ceph
+  annotations:
+    argocd.argoproj.io/sync-wave: "1"
+spec:
+  bucketName: logging-loki-s3
+  storageClassName: rook-ceph-bucket
